@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsk73ua1qgbe4"]
+
+[ext_resource type="Script" uid="uid://bc157avbd8fj5" path="res://projectiles/enemy_laser.gd" id="1_1mdi8"]
+[ext_resource type="Texture2D" uid="uid://rxk2nindhtsv" path="res://assets/laser_small.png" id="1_uqls4"]
+[ext_resource type="Script" uid="uid://dq5twx3sbiral" path="res://components/move_component.gd" id="2_1mdi8"]
+
+[node name="EnemyLaser" type="Node2D"]
+script = ExtResource("1_1mdi8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -3.1377032
+texture = ExtResource("1_uqls4")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("2_1mdi8")
+actor = NodePath("..")
+velocity = Vector2(0, 200)
+metadata/_custom_type_script = "uid://dq5twx3sbiral"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-2, -5, 4, 8)

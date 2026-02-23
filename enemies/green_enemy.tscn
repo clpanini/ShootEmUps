@@ -46,11 +46,11 @@ animation = &"move"
 autoplay = "move"
 frame_progress = 0.7202955
 
-[node name="MoveComponent" parent="." index="1"]
-velocity = Vector2(0, 40)
-
-[node name="StatsComponent" parent="." index="2"]
+[node name="StatsComponent" parent="." index="1"]
 health = 3
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 40)
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 rect = Rect2(-8, -8, 16, 16)
