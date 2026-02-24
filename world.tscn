@@ -13,4 +13,15 @@ position = Vector2(80, 216)
 
 [node name="SpaceBackground" parent="Ship" instance=ExtResource("2_fj7yv")]
 
+<<<<<<< Updated upstream
 [node name="EnemyGenerator" parent="." instance=ExtResource("3_tlwt5")]
+=======
+[node name="GreenEnemy" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(19, 11)
+
+[node name="GreenEnemy2" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(56, 34)
+
+[node name="GreenEnemy3" parent="." instance=ExtResource("3_tlwt5")]
+position = Vector2(130, 13)
+>>>>>>> Stashed changes

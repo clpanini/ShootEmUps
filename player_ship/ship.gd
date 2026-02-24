@@ -13,6 +13,7 @@ extends Node2D
 func _ready() -> void:
 	shoot_rate_timer.timeout.connect(shoot_lasers)
 	pass # Replace with function body.
+	
 
 func shoot_lasers() -> void:
 	spawner_component.spawn(left_gun.global_position)
