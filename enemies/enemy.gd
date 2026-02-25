@@ -16,8 +16,7 @@ extends Node2D
 
 func _ready() -> void:
 	laser_rate_timer.timeout.connect(shoot_lasers)
-	visible_on_screen_notifier_2d.screen_exited.connect(queue_free)
-	
+
 	hurtbox_component.hurt.connect(func(hitbox: HitboxComponent):
 		stats_component.health -= 1
 		flash_component.flash()
@@ -38,6 +37,15 @@ func _ready() -> void:
 		score_component.adjust_score()
 		destroyed_component.destroy() 
 	)
+
+func _process(delta: float) -> void:
+	var bottom := get_viewport_rect().size.y
+	if global_position.y >= bottom:
+		var ship := get_tree().current_scene.get_node_or_null("Ship")
+		if ship:
+			ship.stats_component.health -= 1
+			ship.hearts_ui.update_hearts(ship.stats_component.health)
+		queue_free()
 
 func shoot_lasers() -> void:
 	spawner_component_2.spawn(enemy_laser.global_position)

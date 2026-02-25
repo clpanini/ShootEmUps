@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://5j3fxfm4iqex"]
+
+[ext_resource type="PackedScene" uid="uid://cw46ymcga85ep" path="res://enemies/enemy.tscn" id="1_8d27g"]
+[ext_resource type="Script" uid="uid://bit8chaqbppvw" path="res://enemies/pink_boss_enemy.gd" id="2_2a6iw"]
+[ext_resource type="Texture2D" uid="uid://c8qh12mb14ayw" path="res://assets/pink_enemy.png" id="3_druf4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_druf4"]
+atlas = ExtResource("3_druf4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lt8ga"]
+atlas = ExtResource("3_druf4")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy4mm"]
+atlas = ExtResource("3_druf4")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8kha"]
+atlas = ExtResource("3_druf4")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3ob5"]
+atlas = ExtResource("3_druf4")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lt8ga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_druf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lt8ga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy4mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8kha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3ob5")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_druf4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lt8ga"]
+
+[node name="Enemy" instance=ExtResource("1_8d27g")]
+script = ExtResource("2_2a6iw")
+boss_max_hp = 100
+boss_scale = 1.8
+enter_pixels = 16.0
+enter_speed = 120.0
+horizontal_speed = 160.0
+horizontal_margin = 24.0
+fire_interval = 0.6
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_lt8ga")
+animation = &"move"
+autoplay = "move"
+frame_progress = 0.08874631
+
+[node name="StatsComponent" parent="." index="1"]
+health = 100
+
+[node name="MoveComponent" parent="." index="2"]
+velocity = Vector2(0, 60)
+
+[node name="ScaleComponent" parent="." index="4"]
+scale_amount = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
+shape = SubResource("CircleShape2D_druf4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
+shape = SubResource("CircleShape2D_lt8ga")
+
+[node name="LaserRateTimer" parent="." index="14"]
+wait_time = 1.2

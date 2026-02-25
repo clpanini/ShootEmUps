@@ -16,10 +16,14 @@ extends Node2D
 @onready var flash_component = $FlashComponent 
 @onready var shake_component = $ShakeComponent
 @onready var hitbox_component = $HitboxComponent
+@onready var hearts_ui = $HUD/Hearts
 
 func _ready() -> void:
+	hearts_ui.update_hearts(stats_component.health)
+
 	hurtbox_component.hurt.connect(func(hitbox: HitboxComponent):
 		stats_component.health -= 1
+		hearts_ui.update_hearts(stats_component.health)
 		if flash_component:
 			flash_component.flash()
 		if shake_component:
@@ -31,13 +35,13 @@ func _ready() -> void:
 	if hitbox_component:
 		hitbox_component.hit_hurtbox.connect(func(hurtbox: HurtboxComponent):
 			stats_component.health -= 1
+			hearts_ui.update_hearts(stats_component.health)
 			if flash_component:
 				flash_component.flash()
 			if shake_component:
 				shake_component.tween_shake()
-	)
+		)
 	
-
 	stats_component.no_health.connect(func():
 		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	)

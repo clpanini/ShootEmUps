@@ -2,7 +2,6 @@ extends Node2D
 
 @export var game_stats: GameStats
 @onready var ship: Node2D = $Ship
-# Called when the node enters the scene tree for the first time.
 @onready var score_label: Label = $ScoreLabel
 
 func _ready() -> void:
