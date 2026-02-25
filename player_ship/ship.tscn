@@ -163,8 +163,8 @@ scene = ExtResource("8_le0bn")
 metadata/_custom_type_script = "uid://b6d0cn3rqsa7x"
 
 [node name="ShootRateTimer" type="Timer" parent="."]
-wait_time = 0.4
-autostart = true
+wait_time = 0.1
+one_shot = true
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("9_le0bn")
