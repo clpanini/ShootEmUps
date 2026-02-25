@@ -24,7 +24,6 @@ func _ready() -> void:
 		shake_component.tween_shake()
 		scale_component.tween_scale()
 		
-		# This correctly deletes the player's laser when it hits the enemy
 		if hitbox.owner is Node2D and hitbox.owner.name.containsn("laser"):
 			hitbox.owner.queue_free()
 	)
