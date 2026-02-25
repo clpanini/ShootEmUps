@@ -47,7 +47,7 @@ autoplay = "move"
 frame_progress = 0.7202955
 
 [node name="StatsComponent" parent="." index="1"]
-health = 3
+health = 5
 
 [node name="MoveComponent" parent="." index="2"]
 velocity = Vector2(0, 40)
@@ -57,6 +57,9 @@ rect = Rect2(-8, -8, 16, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" index="0"]
 shape = SubResource("CircleShape2D_b0nf3")
+
+[node name="HitboxComponent" parent="." index="8"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" index="0"]
 shape = SubResource("CircleShape2D_6rcqd")

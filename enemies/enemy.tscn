@@ -48,7 +48,7 @@ sprite = NodePath("../AnimatedSprite2D")
 metadata/_custom_type_script = "uid://bd5oblfdtru7"
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 0
 script = ExtResource("7_4w5fm")
 metadata/_custom_type_script = "uid://dyy2ac3svy36"
