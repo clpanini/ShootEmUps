@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://d1boqc3786vlg"]
+[gd_scene load_steps=30 format=3 uid="uid://d1boqc3786vlg"]
 
 [ext_resource type="Script" uid="uid://w54e5m8cohpr" path="res://player_ship/ship.gd" id="1_etvdo"]
 [ext_resource type="Texture2D" uid="uid://cdweiyburyphq" path="res://assets/ship.png" id="1_lyjrp"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://cswtk43bu0rq1" path="res://components/hurt_component.gd" id="13_kbeao"]
 [ext_resource type="Script" uid="uid://xgss5e2gmtiw" path="res://components/destroyed_component.gd" id="14_a146t"]
 [ext_resource type="PackedScene" uid="uid://b8l74a6ch3s1f" path="res://effects/explosion_effect.tscn" id="14_gglps"]
+[ext_resource type="Script" uid="uid://bd5oblfdtru7" path="res://components/flash_component.gd" id="16_h7cto"]
+[ext_resource type="Script" uid="uid://bwyj0gc0665uq" path="res://components/shake_component.gd" id="17_1soxd"]
+[ext_resource type="Script" uid="uid://c8e8m073w316l" path="res://components/hitbox_component.gd" id="18_b4tyx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3mk2"]
 atlas = ExtResource("1_lyjrp")
@@ -120,6 +123,7 @@ script = ExtResource("1_etvdo")
 
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("2_1xpe7")
+health = 20
 metadata/_custom_type_script = "uid://chh8btu3d2t5o"
 
 [node name="Anchor" type="Node2D" parent="."]
@@ -163,8 +167,8 @@ scene = ExtResource("8_le0bn")
 metadata/_custom_type_script = "uid://b6d0cn3rqsa7x"
 
 [node name="ShootRateTimer" type="Timer" parent="."]
-wait_time = 0.4
-autostart = true
+wait_time = 0.1
+one_shot = true
 
 [node name="ScaleComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
 script = ExtResource("9_le0bn")
@@ -172,6 +176,7 @@ sprite = NodePath("../Anchor")
 metadata/_custom_type_script = "uid://dkbr7ki4fo82k"
 
 [node name="HurtboxComponent" type="Area2D" parent="."]
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("12_kbeao")
 metadata/_custom_type_script = "uid://dyy2ac3svy36"
@@ -196,3 +201,22 @@ actor = NodePath("..")
 stats_component = NodePath("../StatsComponent")
 destroy_effect_spawner_component = NodePath("../ExplosionSpawnerComponent")
 metadata/_custom_type_script = "uid://xgss5e2gmtiw"
+
+[node name="FlashComponent" type="Node" parent="." node_paths=PackedStringArray("sprite")]
+script = ExtResource("16_h7cto")
+sprite = NodePath("../Anchor/AnimatedSprite2D")
+metadata/_custom_type_script = "uid://bd5oblfdtru7"
+
+[node name="ShakeComponent" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("17_1soxd")
+node = NodePath("../Anchor/AnimatedSprite2D")
+metadata/_custom_type_script = "uid://bwyj0gc0665uq"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("18_b4tyx")
+metadata/_custom_type_script = "uid://c8e8m073w316l"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent"]
+polygon = PackedVector2Array(-8, 2, -3, -3, -3, -4, -1, -7, 1, -7, 3, -4, 3, -3, 8, 2, 8, 4, 5, 4, 5, 7, -5, 7, -5, 4, -8, 4)

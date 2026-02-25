@@ -15,6 +15,10 @@ run/main_scene="uid://ckqj0gkc4dtkw"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+ResourceStash="*res://resource_stash.gd"
+
 [display]
 
 window/size/viewport_width=160
