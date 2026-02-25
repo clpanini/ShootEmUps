@@ -1,12 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://ueb8bqvkic7g"]
+[gd_scene load_steps=5 format=3 uid="uid://ueb8bqvkic7g"]
 
 [ext_resource type="Script" uid="uid://dq7ave68f0x35" path="res://enemy_generator.gd" id="1_b0aaj"]
 [ext_resource type="Script" uid="uid://b6d0cn3rqsa7x" path="res://components/spawner_component.gd" id="2_8voho"]
 [ext_resource type="PackedScene" uid="uid://cicw4gvwglica" path="res://enemies/green_enemy.tscn" id="2_n546c"]
 
+[sub_resource type="PackedScene" id="PackedScene_8voho"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("PinkBossEnemy", "Node2D"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0),
+"variants": [],
+"version": 3
+}
+
 [node name="EnemyGenerator" type="Node2D"]
 script = ExtResource("1_b0aaj")
 GreenEnemyScene = ExtResource("2_n546c")
+PinkBossEnemyScene = SubResource("PackedScene_8voho")
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("2_8voho")

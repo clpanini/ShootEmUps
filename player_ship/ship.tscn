@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d1boqc3786vlg"]
+[gd_scene load_steps=32 format=3 uid="uid://d1boqc3786vlg"]
 
 [ext_resource type="Script" uid="uid://w54e5m8cohpr" path="res://player_ship/ship.gd" id="1_etvdo"]
 [ext_resource type="Texture2D" uid="uid://cdweiyburyphq" path="res://assets/ship.png" id="1_lyjrp"]
@@ -18,6 +18,8 @@
 [ext_resource type="Script" uid="uid://bd5oblfdtru7" path="res://components/flash_component.gd" id="16_h7cto"]
 [ext_resource type="Script" uid="uid://bwyj0gc0665uq" path="res://components/shake_component.gd" id="17_1soxd"]
 [ext_resource type="Script" uid="uid://c8e8m073w316l" path="res://components/hitbox_component.gd" id="18_b4tyx"]
+[ext_resource type="Script" uid="uid://hhpxium3yh7h" path="res://player_ship/HeartsUI.gd" id="19_hpl63"]
+[ext_resource type="Texture2D" uid="uid://b43kxkm3nra68" path="res://assets/heart.png" id="20_5vd58"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3mk2"]
 atlas = ExtResource("1_lyjrp")
@@ -220,3 +222,17 @@ metadata/_custom_type_script = "uid://c8e8m073w316l"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitboxComponent"]
 polygon = PackedVector2Array(-8, 2, -3, -3, -3, -4, -1, -7, 1, -7, 3, -4, 3, -3, 8, 2, 8, 4, 5, 4, 5, 7, -5, 7, -5, 4, -8, 4)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Hearts" type="GridContainer" parent="HUD"]
+offset_left = 6.0
+offset_top = 8.0
+offset_right = 46.0
+offset_bottom = 48.0
+theme_override_constants/h_separation = 2
+theme_override_constants/v_separation = 0
+columns = 5
+script = ExtResource("19_hpl63")
+heart_texture = ExtResource("20_5vd58")
+heart_size = Vector2(6, 6)
