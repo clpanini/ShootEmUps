@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cw46ymcga85ep"]
+[gd_scene load_steps=16 format=3 uid="uid://cw46ymcga85ep"]
 
 [ext_resource type="Script" uid="uid://dq5twx3sbiral" path="res://components/move_component.gd" id="1_7frlh"]
 [ext_resource type="Script" uid="uid://kyjyo15yogmq" path="res://enemies/enemy.gd" id="1_07tka"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://b8l74a6ch3s1f" path="res://effects/explosion_effect.tscn" id="11_ccbdt"]
 [ext_resource type="Script" uid="uid://xgss5e2gmtiw" path="res://components/destroyed_component.gd" id="12_ccbdt"]
 [ext_resource type="PackedScene" uid="uid://bsk73ua1qgbe4" path="res://projectiles/enemy_laser.tscn" id="13_mgey2"]
+[ext_resource type="Script" uid="uid://5dkhj6gii325" path="res://components/score_component.gd" id="14_0h01o"]
+[ext_resource type="Resource" uid="uid://tgftfe6pt50e" path="res://game_stats.tres" id="15_8cidi"]
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_07tka")
@@ -74,11 +76,8 @@ stats_component = NodePath("../StatsComponent")
 destroy_effect_spawner_component = NodePath("../SpawnerComponent")
 metadata/_custom_type_script = "uid://xgss5e2gmtiw"
 
-[node name="LeftLaser" type="Marker2D" parent="."]
-position = Vector2(-6, 7)
-
-[node name="RightLaser" type="Marker2D" parent="."]
-position = Vector2(6, 7)
+[node name="EnemyLaser" type="Marker2D" parent="."]
+position = Vector2(0, 7)
 
 [node name="SpawnerComponent2" type="Node2D" parent="."]
 script = ExtResource("10_g67el")
@@ -86,4 +85,10 @@ scene = ExtResource("13_mgey2")
 metadata/_custom_type_script = "uid://b6d0cn3rqsa7x"
 
 [node name="LaserRateTimer" type="Timer" parent="."]
+wait_time = 2.0
 autostart = true
+
+[node name="ScoreComponent" type="Node" parent="."]
+script = ExtResource("14_0h01o")
+game_stats = ExtResource("15_8cidi")
+metadata/_custom_type_script = "uid://5dkhj6gii325"
