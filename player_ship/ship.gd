@@ -43,7 +43,7 @@ func _ready() -> void:
 		)
 	
 	stats_component.no_health.connect(func():
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+		get_tree().change_scene_to_file("res://menus/game_over.tscn")
 	)
 
 func _process(delta: float) -> void:
