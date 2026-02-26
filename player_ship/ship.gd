@@ -47,22 +47,16 @@ func _ready() -> void:
 	)
 
 func _process(delta: float) -> void:
-	handle_movement()
-	handle_shooting()
+	ship_movement()
+	shoot_lasers()
 	animate_the_ship()
 	
 	var view_rect = get_viewport_rect().size
 	global_position.x = clamp(global_position.x, 8, view_rect.x - 8)
 	global_position.y = clamp(global_position.y, 8, view_rect.y - 8)
 
-func handle_movement() -> void:
-	var direction = Vector2.ZERO
-	direction.x = Input.get_axis("ui_left", "ui_right")
-	direction.y = Input.get_axis("ui_up", "ui_down")
-	
-	if direction.length() > 0:
-		direction = direction.normalized()
-	
+func ship_movement() -> void:
+	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	move_component.velocity = direction * ship_speed
 
 func handle_shooting() -> void:
@@ -72,9 +66,12 @@ func handle_shooting() -> void:
 			shoot_rate_timer.start()
 
 func shoot_lasers() -> void:
-	spawner_component.spawn(left_gun.global_position)
-	spawner_component.spawn(right_gun.global_position)
-	scale_component.tween_scale()
+	if Input.is_action_pressed("ui_accept") and shoot_rate_timer.is_stopped():
+		spawner_component.spawn(left_gun.global_position)
+		spawner_component.spawn(right_gun.global_position)
+		scale_component.tween_scale()
+		shoot_rate_timer.start()
+
 	
 func animate_the_ship() -> void:
 	if move_component.velocity.x < 0:
